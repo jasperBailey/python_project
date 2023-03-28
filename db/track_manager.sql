@@ -10,7 +10,8 @@ CREATE TABLE tracks (
 CREATE TABLE notes (
   id SERIAL PRIMARY KEY,
   pitch INT,
-  duration INT,
-  location INT,
+  duration FLOAT,
+  location FLOAT,
+  velocity FLOAT,
   track_id INT NOT NULL REFERENCES tracks(id)
 );

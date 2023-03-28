@@ -1,14 +1,11 @@
 from pydub import AudioSegment
-from pydub.playback import play
 from pydub.generators import Sine
 import repositories.note_repository as note_repository
-import ffmpeg
 
-A4_FREQUENCY = 440
+A4_FREQUENCY = 420
 A4_MIDI_NUM = 69
 
-def beats_to_ms(duration, tempo):
-    return (60000/tempo) * duration
+MS_IN_MIN = 60000
 
 def generate_track_mp3(track):
     notes = note_repository.notes_in_track(track)
@@ -18,15 +15,15 @@ def generate_track_mp3(track):
         position = beats_to_ms(note.location, track.tempo)
         end_position = position + \
             beats_to_ms(note.duration, track.tempo)
-        note_to_add = generate_note(note, track.tempo)
+        note_to_add = generate_note(note, track.tempo)\
+            .apply_gain(velocity_to_dB(note.velocity))
 
         if end_position > len(result):
             new_result = AudioSegment.silent(duration=end_position)
             result = new_result.overlay(result)
 
         result = result.overlay(note_to_add, position)
-
-    result.export(f"out/{track.title}.mp3", "mp3",)
+    result.export(f"out/{track.title}.mp3", "mp3")
 
 def generate_note(note, tempo):
     result = AudioSegment.silent(duration=0)
@@ -42,3 +39,9 @@ def generate_note(note, tempo):
 
 def midi_num_to_freq(midi_num):
     return 2**((midi_num-A4_MIDI_NUM)/12) * A4_FREQUENCY
+
+def beats_to_ms(duration, tempo):
+    return (MS_IN_MIN/tempo) * duration
+
+def velocity_to_dB(velocity):
+    return min(50*velocity - 50, 0)
