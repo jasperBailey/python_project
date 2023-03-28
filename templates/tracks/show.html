@@ -5,9 +5,9 @@
     {{track.title}}
     <div class="tempo">
       {{track.tempo}}
-      <span class="duration">{{track.get_duration()}} mins</span>
     </div>
     <a href="/tracks/{{track.id}}/edit"><p>Edit track</p></a>
+    <a href="/tracks/{{track.id}}/generate"><p>Generate mp3!</p></a>
     <form
       class="delete-form"
       action="/tracks/{{track.id}}/delete"
@@ -21,6 +21,8 @@
         ></i>
       </button>
     </form>
+
+
   </div>
 </div>
 

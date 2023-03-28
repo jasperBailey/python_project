@@ -14,8 +14,8 @@ track_repository.save(track2)
 
 track_repository.select_all()
 
-note1 = Note(40, track1, 3, 39)
+note1 = Note(69, track1, 4, 0)
 note_repository.save(note1)
 
-note2 = Note(42, track1, 3, 42)
+note2 = Note(76, track1, 2, 4)
 note_repository.save(note2)

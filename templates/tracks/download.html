@@ -1,0 +1,12 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="track">
+  <div class="content">
+    {{track.title}}
+    
+    <a href="/tracks/{{track.id}}/download" download>Download</a>
+
+  </div>
+</div>
+
+{% endblock %}
