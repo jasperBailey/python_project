@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="track">
+  <div class="content">
+    {{track.title}}
+    <div class="tempo">
+      {{track.tempo}}
+      <span class="duration">{{track.get_duration()}} mins</span>
+    </div>
+    <a href="/tracks/{{track.id}}/edit"><p>Edit track</p></a>
+    <form
+      class="delete-form"
+      action="/tracks/{{track.id}}/delete"
+      method="POST"
+    >
+      <button class="trash-button">
+        <i
+          class="fa fa-trash-o fa-3x"
+          style="color: red"
+          aria-hidden="true"
+        ></i>
+      </button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
