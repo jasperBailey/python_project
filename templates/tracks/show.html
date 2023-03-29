@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %}
 <section id="track">
   <p><b>Title:</b> {{ track.title }}</p>
-  <p><b>Author:</b> {{ track.tempo }}</p>
+  <p><b>Tempo:</b> {{ track.tempo }}</p>
 </section>
 <section id="forms">
   <form action="/tracks/{{ track.id }}/delete" method="post">

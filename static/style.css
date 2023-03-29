@@ -23,6 +23,12 @@ body {
     border: solid black 1px;
     border-radius: 5px;
 }
+#note-list > div {
+    margin: 5px;
+    padding: 0 1rem;
+    border: solid black 1px;
+    border-radius: 5px;
+}
 
 ul {
     display: flex;

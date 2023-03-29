@@ -11,7 +11,7 @@ CREATE TABLE notes (
   id SERIAL PRIMARY KEY,
   pitch INT,
   duration FLOAT,
-  location FLOAT,
+  position FLOAT,
   velocity FLOAT,
-  track_id INT NOT NULL REFERENCES tracks(id)
+  track_id INT NOT NULL REFERENCES tracks(id) ON DELETE CASCADE
 );

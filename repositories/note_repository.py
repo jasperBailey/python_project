@@ -4,8 +4,8 @@ from models.note import Note
 import repositories.track_repository as track_repository
 
 def save(note):
-    sql = "INSERT INTO notes (pitch, track_id, duration, location, velocity) VALUES (%s, %s, %s, %s, %s) RETURNING *"
-    values = [note.pitch, note.track.id, note.duration, note.location, note.velocity]
+    sql = "INSERT INTO notes (pitch, track_id, duration, position, velocity) VALUES (%s, %s, %s, %s, %s) RETURNING *"
+    values = [note.pitch, note.track.id, note.duration, note.position, note.velocity]
     results = run_sql(sql, values)
     id = results[0]['id']
     note.id = id
@@ -18,7 +18,7 @@ def select_all():
 
     for row in results:
         track = track_repository.select(row['track_id'])
-        note = Note(row['pitch'], track, row['duration'], row['location'], row['velocity'], row['id'] )
+        note = Note(row['pitch'], track, row['duration'], row['position'], row['velocity'], row['id'] )
         notes.append(note)
     return notes
 
@@ -31,7 +31,7 @@ def select(id):
     if results:
         result = results[0]
         track = track_repository.select(result['track_id'])
-        note = Note(result['pitch'], track, result['duration'], result['location'], result['velocity'], result['id'] )
+        note = Note(result['pitch'], track, result['duration'], result['position'], result['velocity'], result['id'] )
     return note
 
 def delete_all():
@@ -44,8 +44,8 @@ def delete(id):
     run_sql(sql, values)
 
 def update(note):
-    sql = "UPDATE notes SET (pitch, track_id, duration, location, velocity) = (%s, %s, %s, %s, %s) WHERE id = %s"
-    values = [note.pitch, note.track.id, note.duration, note.location, note.velocity, note.id]
+    sql = "UPDATE notes SET (pitch, track_id, duration, position, velocity) = (%s, %s, %s, %s, %s) WHERE id = %s"
+    values = [note.pitch, note.track.id, note.duration, note.position, note.velocity, note.id]
     run_sql(sql, values)
 
 def notes_in_track(track):
@@ -55,6 +55,6 @@ def notes_in_track(track):
     results = run_sql(sql, values)
 
     for row in results:
-        note = Note(row['pitch'], row['track_id'], row['duration'], row['location'], row['velocity'], row['id'] )
+        note = Note(row['pitch'], row['track_id'], row['duration'], row['position'], row['velocity'], row['id'] )
         notes.append(note)
     return notes

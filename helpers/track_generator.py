@@ -2,7 +2,7 @@ from pydub import AudioSegment
 from pydub.generators import Sine
 import repositories.note_repository as note_repository
 
-A4_FREQUENCY = 420
+A4_FREQUENCY = 440
 A4_MIDI_NUM = 69
 
 MS_IN_MIN = 60000
@@ -12,7 +12,7 @@ def generate_track_mp3(track):
     result = AudioSegment.silent(duration=0)
 
     for note in notes:
-        position = beats_to_ms(note.location, track.tempo)
+        position = beats_to_ms(note.position, track.tempo)
         end_position = position + \
             beats_to_ms(note.duration, track.tempo)
         note_to_add = generate_note(note, track.tempo)\

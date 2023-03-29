@@ -1,7 +1,5 @@
 from db.run_sql import run_sql
-
 from models.track import Track
-from models.note import Note
 
 def save(track):
     sql = "INSERT INTO tracks (title, tempo) VALUES (%s, %s) RETURNING *"

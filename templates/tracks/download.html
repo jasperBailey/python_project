@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %}
 <h2>{{track.title}}</h2>
   <a href="/tracks/{{track.id}}/download" download>Download Track</a>
-<audio controls>
+<audio controls autoplay>
   <source src="/tracks/{{track.id}}/download" type="audio/mpeg" />
   Your browser does not support the audio element.
 </audio>

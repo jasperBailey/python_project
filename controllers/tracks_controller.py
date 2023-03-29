@@ -2,17 +2,19 @@ from flask import render_template, request, redirect, Blueprint, send_from_direc
 from repositories import track_repository
 from models.track import Track
 from helpers.track_generator import *
+from os import remove
+from os.path import exists
 
 tracks_blueprint = Blueprint("tracks", __name__)
 
 @tracks_blueprint.route("/tracks")
 def tracks():
     tracks = track_repository.select_all()
-    return render_template("tracks/index.html", all_tracks = tracks)
+    return render_template("tracks/index.html", all_tracks = tracks, title="All tracks")
 
 @tracks_blueprint.route('/tracks/new')
 def new_track():
-    return render_template("tracks/new.html")
+    return render_template("tracks/new.html", title="New track")
 
 @tracks_blueprint.route('/tracks', methods=['POST'])
 def create_track():
@@ -25,12 +27,12 @@ def create_track():
 @tracks_blueprint.route('/tracks/<id>')
 def show_track(id):
     track = track_repository.select(id)
-    return render_template('tracks/show.html', track=track)
+    return render_template('tracks/show.html', track=track, title=track.title)
 
 @tracks_blueprint.route('/tracks/<id>/edit')
 def edit_track(id):
     track = track_repository.select(id)
-    return render_template('tracks/edit.html', track=track)
+    return render_template('tracks/edit.html', track=track, title=f"Edit {track.title} details")
 
 @tracks_blueprint.route('/tracks/<id>', methods=['POST'])
 def update_track(id):
@@ -42,6 +44,9 @@ def update_track(id):
 
 @tracks_blueprint.route('/tracks/<id>/delete', methods=['POST'])
 def delete_track(id):
+    track = track_repository.select(id)
+    if exists(f"out/{track.title}.mp3"):
+        remove(f"out/{track.title}.mp3")
     track_repository.delete(id)
     return redirect('/tracks')
 
@@ -49,7 +54,7 @@ def delete_track(id):
 def gen_track(id):
     track = track_repository.select(id)
     generate_track_mp3(track)
-    return render_template('tracks/download.html', track=track)
+    return render_template('tracks/download.html', track=track, title=f"Play {track.title}")
 
 @tracks_blueprint.route('/tracks/<id>/download')
 def download_track(id):
