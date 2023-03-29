@@ -1,19 +1,19 @@
-{% extends "base.html" %}
-{% block content %}
-
+{% extends "base.html" %} {% block content %}
+<h2>Edit track</h2>
 <form action="/tracks/{{track.id}}" method="post">
-  <div>
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" value="{{track.title}}" required autofocus>
-  </div>
+  <label for="title">Title:</label>
+  <input
+    type="text"
+    id="title"
+    name="title"
+    value="{{track.title}}"
+    required
+    autofocus
+  />
 
-  <div>
-    <label for="tempo">Tempo (BPM):</label>
-    <input type="number" id="tempo" name="tempo" value="{{track.tempo}}" required>
-  </div>
+  <label for="tempo">Tempo (BPM):</label>
+  <input type="number" id="tempo" name="tempo" value="{{track.tempo}}" required />
 
   <button type="submit">Update Track</button>
-
 </form>
-
 {% endblock %}

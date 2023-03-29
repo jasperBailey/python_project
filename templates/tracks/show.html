@@ -1,29 +1,20 @@
 {% extends "base.html" %} {% block content %}
-
-<div class="track">
-  <div class="content">
-    {{track.title}}
-    <div class="tempo">
-      {{track.tempo}}
-    </div>
-    <a href="/tracks/{{track.id}}/edit"><p>Edit track</p></a>
-    <a href="/tracks/{{track.id}}/generate"><p>Generate mp3!</p></a>
-    <form
-      class="delete-form"
-      action="/tracks/{{track.id}}/delete"
-      method="POST"
-    >
-      <button class="trash-button">
-        <i
-          class="fa fa-trash-o fa-3x"
-          style="color: red"
-          aria-hidden="true"
-        ></i>
-      </button>
-    </form>
-
-
-  </div>
-</div>
-
+<section id="track">
+  <p><b>Title:</b> {{ track.title }}</p>
+  <p><b>Author:</b> {{ track.tempo }}</p>
+</section>
+<section id="forms">
+  <form action="/tracks/{{ track.id }}/delete" method="post">
+    <input type="submit" value="Delete track" />
+  </form>
+  <form action="/tracks/{{ track.id }}/edit" method="get">
+    <input type="submit" value="Edit track details" />
+  </form>
+  <form action="/tracks/{{ track.id }}/generate" method="get">
+    <input type="submit" value="Generate .mp3" />
+  </form>
+  <form action="/tracks/{{ track.id }}/notes" method="get">
+    <input type="submit" value="Edit track" />
+  </form>
+</section>
 {% endblock %}

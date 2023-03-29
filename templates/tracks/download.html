@@ -1,12 +1,9 @@
 {% extends "base.html" %} {% block content %}
-
-<div class="track">
-  <div class="content">
-    {{track.title}}
-    
-    <a href="/tracks/{{track.id}}/download" download>Download</a>
-
-  </div>
-</div>
+<h2>{{track.title}}</h2>
+  <a href="/tracks/{{track.id}}/download" download>Download Track</a>
+<audio controls>
+  <source src="/tracks/{{track.id}}/download" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
 
 {% endblock %}

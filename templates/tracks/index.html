@@ -1,23 +1,12 @@
-{% extends "base.html" %} {% block content %} {% for track in all_tracks %}
-<div class="track">
-  <div class="content">
-    {{track.title}}
-    <div class="tempo">
-      <a href="/tracks/{{ track.id }}">{{track.tempo}}</a>
-    </div>
-    <form
-      class="delete-form"
-      action="/tracks/{{track.id}}/delete"
-      method="POST"
-    >
-      <button class="trash-button">
-        <i
-          class="fa fa-trash-o fa-3x"
-          style="color: red"
-          aria-hidden="true"
-        ></i>
-      </button>
-    </form>
+{% extends "base.html" %} {% block content %}
+<section id="track-list">
+  {% for track in all_tracks %}
+  <div>
+    <a href="/tracks/{{ track.id }}">
+      <p><b>Title:</b> {{ track.title }}</p>
+      <p><b>Author:</b> {{ track.tempo }}</p>
+    </a>
   </div>
-</div>
-{% endfor %} {% endblock %}
+  {% endfor %}
+</section>
+{% endblock %}

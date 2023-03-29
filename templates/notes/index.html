@@ -1,0 +1,12 @@
+{% extends "base.html" %} {% block content %}
+<section id="note-list">
+  {% for note in all_notes %}
+  <div>
+    <p><b>Position:</b> {{ note.location }}</p>
+    <p><b>Pitch:</b> {{ note.pitch }}</p>
+    <p><b>Duration:</b> {{ note.duration }}</p>
+    <p><b>Velocity:</b> {{ note.velocity }}</p>
+  </div>
+  {% endfor %}
+</section>
+{% endblock %}
