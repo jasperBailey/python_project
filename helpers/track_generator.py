@@ -2,7 +2,7 @@ from pydub import AudioSegment
 from pydub.generators import Sine
 import repositories.note_repository as note_repository
 
-A4_FREQUENCY = 440
+A4_FREQUENCY = 420
 A4_MIDI_NUM = 69
 
 MS_IN_MIN = 60000

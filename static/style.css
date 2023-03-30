@@ -4,16 +4,17 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 0;
-    background-color: rgb(255, 231, 244);
+    background-color: rgb(193, 201, 255);
 }
 
 header {
-    background-color: rgb(228, 255, 246);
+    background-color: rgb(218, 218, 218);
     width: 100vw;
 }
 
 h1 {
     text-align: center;
+    padding: 0 1rem;
 }
 
 #track-list {
@@ -88,11 +89,15 @@ ul > li {
     padding: 0 1rem;
 }
 
-h1 {
-    padding: 0 1rem;
-}
-
 #forms {
     display: flex;
     justify-content: center;
+}
+
+#note-add > form > div > input {
+    width: 40px;
+}
+
+#note-add > form {
+    padding: 10px;
 }
