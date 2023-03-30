@@ -9,6 +9,7 @@ notes_blueprint = Blueprint("notes", __name__)
 def notes(track_id):
     track = track_repository.select(track_id)
     notes = note_repository.notes_in_track(track)
+    notes.sort(key=lambda x: x.position)
     return render_template("notes/index.html", all_notes=notes, track=track, title=f"Edit {track.title}")
 
 @notes_blueprint.route('/tracks/<track_id>/notes', methods=['POST'])

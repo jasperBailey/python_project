@@ -3,6 +3,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
+    background-color: rgb(255, 231, 244);
+}
+
+header {
+    background-color: rgb(228, 255, 246);
+    width: 100vw;
+}
+
+h1 {
+    text-align: center;
 }
 
 #track-list {
@@ -68,6 +79,7 @@ body {
 
 ul {
     display: flex;
+    justify-content: center;
     padding: 0;
 }
 
