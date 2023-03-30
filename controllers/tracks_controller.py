@@ -36,6 +36,7 @@ def edit_track(id):
 
 @tracks_blueprint.route('/tracks/<id>', methods=['POST'])
 def update_track(id):
+    remove_mp3(id)
     title = request.form['title']
     tempo = request.form['tempo']
     track = Track(title, tempo, id)
@@ -44,9 +45,7 @@ def update_track(id):
 
 @tracks_blueprint.route('/tracks/<id>/delete', methods=['POST'])
 def delete_track(id):
-    track = track_repository.select(id)
-    if exists(f"out/{track.title}.mp3"):
-        remove(f"out/{track.title}.mp3")
+    remove_mp3(id)
     track_repository.delete(id)
     return redirect('/tracks')
 
@@ -61,3 +60,8 @@ def download_track(id):
     track = track_repository.select(id)
     filename = track.title + ".mp3"
     return send_from_directory('out/', filename)
+
+def remove_mp3(track_id):
+    track = track_repository.select(track_id)
+    if exists(f"out/{track.title}.mp3"):
+        remove(f"out/{track.title}.mp3")

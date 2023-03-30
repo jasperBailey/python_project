@@ -1,8 +1,14 @@
+import os
+
 from models.note import Note
 from models.track import Track
 
 import repositories.note_repository as note_repository
 import repositories.track_repository as track_repository
+
+for filestr in os.listdir("out/"):
+    if filestr[-4:] == ".mp3":
+        os.remove(f"out/{filestr}")
 
 note_repository.delete_all()
 track_repository.delete_all()

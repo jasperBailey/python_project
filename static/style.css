@@ -23,11 +23,47 @@ body {
     border: solid black 1px;
     border-radius: 5px;
 }
+
 #note-list > div {
+    display:flex;
+    margin:20px;
+    padding: 0 1rem;
+    border: solid black 1px;
+    border-radius: 5px;
+}
+
+#note-list > div > form > p {
+    display:flex;
+}
+
+#note-update > p {
+    margin: 7px 0;
+}
+
+#note-update > p > input {
+    width: 40px;
+}
+
+#note-update > button {
+    margin:  8px 0 0 0  ;
+}
+
+#note-update {
+    margin: 8px 0 0 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+#note-add {
     margin: 5px;
     padding: 0 1rem;
     border: solid black 1px;
     border-radius: 5px;
+}
+
+#note-add > form {
+    display: flex;
+    flex-direction: column;
 }
 
 ul {
