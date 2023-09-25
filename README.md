@@ -14,6 +14,8 @@ You should have PostgreSQL installed: https://www.postgresql.org/download/
 
 You should have ffmpeg or avconv installed - I've only tested with ffmpeg though: https://ffmpeg.org/download.html
 
+_Installation guide: https://phoenixnap.com/kb/ffmpeg-windows_
+
 You should have the following packages installed:
 
 `pip install flask`
