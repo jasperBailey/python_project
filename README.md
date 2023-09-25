@@ -12,6 +12,8 @@ You should have Python 3.10+ installed: https://www.python.org/downloads/
 
 You should have PostgreSQL installed: https://www.postgresql.org/download/
 
+You should have ffmpeg or avconv installed - I've only tested with ffmpeg though: https://ffmpeg.org/download.html
+
 You should have the following packages installed:
 
 `pip install flask`
@@ -22,8 +24,6 @@ You should have the following packages installed:
 `pip install psycopg2`
 
 `pip install pydub`
-
-`pip install ffmpeg`
 
 ## Create the PostgreSQL database
 
